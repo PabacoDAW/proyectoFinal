@@ -4,9 +4,17 @@
         <servlet-name>PaginaPrincipal</servlet-name>
         <servlet-class>controladores.PaginaPrincipal</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FiltrarProductos</servlet-name>
+        <servlet-class>controladores.FiltrarProductos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PaginaPrincipal</servlet-name>
         <url-pattern>/PaginaPrincipal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FiltrarProductos</servlet-name>
+        <url-pattern>/FiltrarProductos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

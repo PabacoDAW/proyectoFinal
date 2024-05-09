@@ -5,12 +5,16 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -23,20 +27,31 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(unique = true)
+    private String usuario;
     private String nombre;
     private String apellidos;
     private String email;
+    
+    @Column(nullable = false)
     private String contraseña;
     private String domicilio;
-
     @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
 
     public enum TipoUsuario {
         ADMINISTRADOR,
-        EMPLEADO,
         SOCIO
     }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+    
 
     public String getDomicilio() {
         return domicilio;

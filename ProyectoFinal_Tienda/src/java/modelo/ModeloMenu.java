@@ -5,30 +5,41 @@
 package modelo;
 
 import dao.ProductoJpaController;
+import entidades.Categoria;
+import entidades.Marca;
 import entidades.Producto;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author Rovimatica
- */
 public class ModeloMenu {
 
     public static List<Producto> getProductos(String filtro) {
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("Biblioteca_finalPU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectoFinal_TiendaPU");
         ProductoJpaController ljc = new ProductoJpaController(emf);
         List<Producto> productos = new ArrayList<Producto>();
         productos = ljc.findProductoEntities();
-        emf.close();
         List<Producto> productosFiltrados = new ArrayList();
-        for (Producto p: productos) {
-            if (p.getCategoria().getNombre().contains(filtro) || p.getNombre().contains(filtro) || p.getMarca().getNombre().contains(filtro)) {
+        for (Producto p : productos) {
+            if (!p.getNombre().isBlank() && p.getNombre().contains(filtro)) {
                 productosFiltrados.add(p);
+            } else if (p.getCategorias() != null && p.getCategorias().size() >= 1) {
+                for (Categoria categoria : p.getCategorias()) {
+                    if (categoria.getNombre().contains(filtro)) {
+                        productosFiltrados.add(p);
+                    }
+                }
+            } else if (p.getMarcas() != null && p.getMarcas().size() >= 1) {
+                for (Marca marca : p.getMarcas()) {
+                    if (marca.getNombre().contains(filtro)) {
+                        productosFiltrados.add(p);
+                    }
+                }
             }
+
         }
+        emf.close();
         return productosFiltrados;
     }
 

@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+import dao.ProductoJpaController;
 import dao.UsuarioJpaController;
+import entidades.Producto;
 import entidades.Usuario;
 import java.io.IOException;
 import javax.persistence.EntityManagerFactory;
@@ -33,6 +35,13 @@ public class Prueba extends HttpServlet {
             throws ServletException, IOException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectoFinal_TiendaPU");
         UsuarioJpaController em = new UsuarioJpaController(emf);
+        ProductoJpaController pjc = new ProductoJpaController(emf);
+        Producto p = new Producto();
+        p.setStock(23);
+        p.setPrecio(5.50);
+        p.setNombre("macarrones");
+        p.setUrl("https://imagenes.20minutos.es/files/image_1920_1080/uploads/imagenes/2021/09/14/macarrones.jpeg");
+        pjc.create(p);
         Usuario usuario = new Usuario();
         usuario.setNombre("Admin");
         usuario.setEmail("admin@admin.admin");

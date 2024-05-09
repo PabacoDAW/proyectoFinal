@@ -37,7 +37,7 @@ public class Pedido implements Serializable {
         inverseJoinColumns = @JoinColumn(name = "producto_id")
     )
     private List<Producto> productos;
-    private boolean preparadoParaRecoger;
+    private String estado;
     private boolean entregaADomicilio;
 
     public Usuario getUsuario() {
@@ -56,13 +56,15 @@ public class Pedido implements Serializable {
         this.productos = productos;
     }
 
-    public boolean isPreparadoParaRecoger() {
-        return preparadoParaRecoger;
+    public String getPreparadoParaRecoger() {
+        return estado;
     }
 
-    public void setPreparadoParaRecoger(boolean preparadoParaRecoger) {
-        this.preparadoParaRecoger = preparadoParaRecoger;
+    public void setPreparadoParaRecoger(String preparadoParaRecoger) {
+        this.estado = preparadoParaRecoger;
     }
+
+    
 
     public boolean isEntregaADomicilio() {
         return entregaADomicilio;

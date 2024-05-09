@@ -44,7 +44,7 @@ public class PaginaPrincipal extends HttpServlet {
             sesion.setAttribute("tipoUsuario", u.getTipoUsuario());
         }
         if (filtro != null && !filtro.trim().isEmpty()) {
-            request.setAttribute("libros", ModeloMenu.getProductos(filtro));
+            request.setAttribute("productos", ModeloMenu.getProductos(filtro));
         } else {
             request.setAttribute("productos", ModeloMenu.getProductos());
         }

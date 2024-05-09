@@ -5,10 +5,14 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 /**
@@ -26,12 +30,53 @@ public class Producto implements Serializable {
     private String descripcion;
     private double precio;
     private int stock;
+    private String url;
 
-    @ManyToOne
-    private Marca marca;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+    
+    
 
-    @ManyToOne
-    private Categoria categoria;
+    @ManyToMany
+    @JoinTable(
+        name = "producto_marca",
+        joinColumns = @JoinColumn(name = "producto_id"),
+        inverseJoinColumns = @JoinColumn(name = "marca_id")
+    )
+    private List<Marca> marcas;
+
+    @ManyToMany
+    @JoinTable(
+        name = "producto_categoria",
+        joinColumns = @JoinColumn(name = "producto_id"),
+        inverseJoinColumns = @JoinColumn(name = "categoria_id")
+    )
+    private List<Categoria> categorias;
+
+    public List<Marca> getMarcas() {
+        return marcas;
+    }
+
+    public void setMarcas(List<Marca> marcas) {
+        this.marcas = marcas;
+    }
+
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public Long getId() {
         return id;
@@ -72,23 +117,5 @@ public class Producto implements Serializable {
     public void setStock(int stock) {
         this.stock = stock;
     }
-
-    public Marca getMarca() {
-        return marca;
-    }
-
-    public void setMarca(Marca marca) {
-        this.marca = marca;
-    }
-
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
-    
-    
     
 }
