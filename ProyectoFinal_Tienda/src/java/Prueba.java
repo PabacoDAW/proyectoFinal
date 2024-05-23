@@ -44,8 +44,10 @@ public class Prueba extends HttpServlet {
         pjc.create(p);
         Usuario usuario = new Usuario();
         usuario.setNombre("Admin");
+        usuario.setContraseña("admin");
         usuario.setEmail("admin@admin.admin");
         usuario.setDomicilio("C/Administrador");
+        usuario.setUsuario("admin");
         usuario.setTipoUsuario(Usuario.TipoUsuario.ADMINISTRADOR);
         em.create(usuario);
         emf.close();

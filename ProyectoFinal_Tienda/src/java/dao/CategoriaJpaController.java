@@ -17,7 +17,7 @@ import javax.persistence.criteria.Root;
 
 /**
  *
- * @author Rovimatica
+ * @author usuario
  */
 public class CategoriaJpaController implements Serializable {
 

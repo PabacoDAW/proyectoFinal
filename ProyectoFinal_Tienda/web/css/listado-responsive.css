@@ -1,0 +1,40 @@
+.listado-responsive {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    height: 100vh;
+}
+
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 250px;
+    justify-content: center;
+    max-width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.image-wrapper {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 80px;
+}
+
+.image-wrapper img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.image-button {
+    margin-top: 15px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}

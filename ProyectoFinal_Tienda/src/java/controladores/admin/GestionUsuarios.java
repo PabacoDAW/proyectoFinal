@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controladores;
+package controladores.admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author usuario
+ * @author Rovimatica
  */
-@WebServlet(name = "Poducto", urlPatterns = {"/Poducto"})
-public class Poducto extends HttpServlet {
+@WebServlet(name = "GestionUsuarios", urlPatterns = {"/admin/GestionUsuarios"})
+public class GestionUsuarios extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,7 +30,7 @@ public class Poducto extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String vista = "producto.jsp";
+        String vista = "gestionUsuarios.jsp";
         request.getRequestDispatcher(vista).forward(request, response);
     }
 

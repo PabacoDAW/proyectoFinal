@@ -8,7 +8,7 @@
         <title>PaCoTech</title>
     </head>
     <body>
-        <h1>Carrito</h1>
+        <h1>${usuario.nombre}</h1>
         <p>Coste del carrito: ${precio}€</p>
         <table>
             <thead>

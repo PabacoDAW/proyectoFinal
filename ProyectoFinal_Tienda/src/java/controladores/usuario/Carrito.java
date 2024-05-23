@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import modelo.usuario.ModeloCarrito;
 
-@WebServlet(name = "Carrito", urlPatterns = {"/Carrito"})
+@WebServlet(name = "Carrito", urlPatterns = {"/usuario/Carrito"})
 public class Carrito extends HttpServlet {
 
     /**
@@ -29,7 +29,7 @@ public class Carrito extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String vista = "carrito.jsp";
+        String vista = "/usuario/carrito.jsp";
         String id_eliminar = request.getParameter("id");
         HttpSession session = request.getSession();
         Usuario u = (Usuario) session.getAttribute("usuario");

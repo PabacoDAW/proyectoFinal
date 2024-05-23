@@ -5,6 +5,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,10 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-/**
- *
- * @author Rovimatica
- */
+
 @Entity
 public class Carrito implements Serializable {
 
@@ -29,30 +27,31 @@ public class Carrito implements Serializable {
     public Long getId() {
         return id;
     }
-    @OneToOne
-    @JoinColumn(name = "usuario_id", unique = true)
-    private Usuario usuario;
 
-    @OneToMany(mappedBy = "carrito")
+    @OneToMany()
     private List<Producto> productos;
+
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+    
+    public Carrito() {
+        productos = new ArrayList<Producto>();
+    }
 
     public Usuario getUsuario() {
         return usuario;
     }
     
-    public double getPrecio(){
+
+    public double getPrecio() {
         double precio = 0;
         for (Producto producto : productos) {
             precio += producto.getPrecio();
         }
         return precio;
     }
-    
-    
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 
     public List<Producto> getProductos() {
         return productos;
@@ -61,8 +60,6 @@ public class Carrito implements Serializable {
     public void setProductos(List<Producto> productos) {
         this.productos = productos;
     }
-    
-    
 
     public void setId(Long id) {
         this.id = id;
@@ -92,5 +89,10 @@ public class Carrito implements Serializable {
     public String toString() {
         return "entidades.Carrito[ id=" + id + " ]";
     }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
     
+
 }

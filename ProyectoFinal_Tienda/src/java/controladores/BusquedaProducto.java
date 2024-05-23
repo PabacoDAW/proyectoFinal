@@ -4,6 +4,7 @@
  */
 package controladores;
 
+import entidades.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import modelo.ModeloMenu;
 
 /**
  *
@@ -31,6 +34,17 @@ public class BusquedaProducto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String vista = "busquedaProducto.jsp";
+        String filtro = request.getParameter("filtro");
+        HttpSession sesion = request.getSession();
+        Usuario u = (Usuario) sesion.getAttribute("usuario");
+        if (u != null) {
+            sesion.setAttribute("tipoUsuario", u.getTipoUsuario());
+        }
+        if (filtro != null && !filtro.trim().isEmpty()) {
+            request.setAttribute("productos", ModeloMenu.getProductos(filtro));
+        } else {
+            request.setAttribute("productos", ModeloMenu.getProductos());
+        }
         request.getRequestDispatcher(vista).forward(request, response);
     }
 

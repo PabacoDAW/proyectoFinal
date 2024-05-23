@@ -6,8 +6,10 @@ package modelo.usuario;
 
 import dao.CarritoJpaController;
 import dao.PedidoJpaController;
+import dao.UsuarioJpaController;
 import entidades.Carrito;
 import entidades.Producto;
+import entidades.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -17,29 +19,18 @@ public class ModeloCarrito {
 
     public static List<Producto> getProductos(Long id) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectoFinal_TiendaPU");
-        CarritoJpaController cjc = new CarritoJpaController(emf);
-        List<Carrito> carritos = cjc.findCarritoEntities();
-        List<Producto> productos = new ArrayList();
-        for (Carrito carrito : carritos) {
-            if (carrito.getUsuario().getId() == id) {
-                productos = carrito.getProductos();
-            }
-        }
-        return productos;
+        UsuarioJpaController ujc = new UsuarioJpaController(emf);
+        Usuario u = ujc.findUsuario(id);
+        emf.close();
+        return u.getCarrito().getProductos();
     }
 
     public static Double getPrecio(Long id) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectoFinal_TiendaPU");
-        CarritoJpaController cjc = new CarritoJpaController(emf);
-        List<Carrito> carritos = cjc.findCarritoEntities();
-        double precio;
-        for (Carrito carrito : carritos) {
-            if (carrito.getUsuario().getId() == id) {
-                precio = carrito.getPrecio();
-                return precio;  
-            }
-        }
-        return null;
+        UsuarioJpaController ujc = new UsuarioJpaController(emf);
+        Usuario u = ujc.findUsuario(id);
+        return u.getCarrito().getPrecio();
     }
+
 
 }

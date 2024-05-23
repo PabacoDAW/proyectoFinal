@@ -5,6 +5,7 @@
 package controladores;
 
 import dao.ProductoJpaController;
+import entidades.Carrito;
 import entidades.Producto;
 import entidades.Usuario;
 import java.io.IOException;
@@ -17,12 +18,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import modelo.ModeloLogin;
 import modelo.ModeloMenu;
+import modelo.usuario.ModeloCarrito;
 
-/**
- *
- * @author Rovimatica
- */
 public class PaginaPrincipal extends HttpServlet {
 
     /**
@@ -37,16 +36,14 @@ public class PaginaPrincipal extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String vista = "paginaPrincipal.jsp";
-        String filtro = request.getParameter("filtro");
+        String agregar = request.getParameter("agregar");
         HttpSession sesion = request.getSession();
         Usuario u = (Usuario) sesion.getAttribute("usuario");
+        request.setAttribute("productos", ModeloMenu.getProductos());
         if (u != null) {
             sesion.setAttribute("tipoUsuario", u.getTipoUsuario());
-        }
-        if (filtro != null && !filtro.trim().isEmpty()) {
-            request.setAttribute("productos", ModeloMenu.getProductos(filtro));
-        } else {
-            request.setAttribute("productos", ModeloMenu.getProductos());
+            ModeloMenu.addProduct(agregar, u);
+            request.setAttribute("nproducto", ModeloLogin.getNProductos(u));
         }
         request.getRequestDispatcher(vista).forward(request, response);
     }

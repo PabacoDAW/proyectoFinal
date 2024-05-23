@@ -1,0 +1,57 @@
+.button-1 {
+  position: relative;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid #34974d;
+  background-color: #3aa856;
+}
+
+.button-1, .button__icon, .button__text {
+  transition: all 0.3s;
+}
+
+.button-1 .button__text {
+  transform: translateX(30px);
+  color: #fff;
+  font-weight: 600;
+}
+
+.button-1 .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: #34974d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-1 .svg {
+  width: 30px;
+  stroke: #fff;
+}
+
+.button-1:hover {
+  background: #34974d;
+}
+
+.button-1:hover .button__text {
+  color: transparent;
+}
+
+.button-1:hover .button__icon {
+  width: 148px;
+  transform: translateX(0);
+}
+
+.button-1:active .button__icon {
+  background-color: #2e8644;
+}
+
+.button-1:active {
+  border: 1px solid #2e8644;
+}

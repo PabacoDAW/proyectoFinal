@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package modelo.admin;
+package controladores.admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Rovimatica
  */
-@WebServlet(name = "Gestion", urlPatterns = {"/Gestion"})
+@WebServlet(name = "Gestion", urlPatterns = {"/admin/Gestion"})
 public class Gestion extends HttpServlet {
 
     /**
@@ -30,7 +30,7 @@ public class Gestion extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String vista = "getion.jsp";
+        String vista = "gestion.jsp";
         request.getRequestDispatcher(vista).forward(request, response);
     }
 

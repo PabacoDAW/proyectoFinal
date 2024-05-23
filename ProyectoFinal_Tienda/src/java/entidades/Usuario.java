@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -27,7 +28,7 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String usuario;
     private String nombre;
     private String apellidos;
@@ -36,6 +37,8 @@ public class Usuario implements Serializable {
     @Column(nullable = false)
     private String contraseña;
     private String domicilio;
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private Carrito carrito;
     @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
 
@@ -43,6 +46,21 @@ public class Usuario implements Serializable {
         ADMINISTRADOR,
         SOCIO
     }
+
+    public Usuario() {
+        this.carrito = new Carrito();
+        this.carrito.setUsuario(this);
+    }
+    
+
+    public Carrito getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(Carrito carrito) {
+        this.carrito = carrito;
+    }
+    
 
     public String getUsuario() {
         return usuario;

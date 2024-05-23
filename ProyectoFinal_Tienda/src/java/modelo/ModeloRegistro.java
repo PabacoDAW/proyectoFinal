@@ -9,10 +9,6 @@ import entidades.Usuario;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author Rovimatica
- */
 public class ModeloRegistro {
 
     public static Usuario registrar(String nombre, String apellidos, String nombreUsuario, String domicilio, String email, String contrasena) {
