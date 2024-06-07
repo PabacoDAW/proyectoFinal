@@ -5,7 +5,9 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +17,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -30,15 +33,43 @@ public class Pedido implements Serializable {
     
     @ManyToOne
     private Usuario usuario;
-    @ManyToMany
-    @JoinTable(
-        name = "pedido_producto",
-        joinColumns = @JoinColumn(name = "pedido_id"),
-        inverseJoinColumns = @JoinColumn(name = "producto_id")
-    )
-    private List<Producto> productos;
     private String estado;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fechaPedido;
     private boolean entregaADomicilio;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Carrito carrito;
+
+    public Carrito getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(Carrito carrito) {
+        this.carrito = carrito;
+    }
+    
+    
+    public String getFecha(){
+        String fecha = "" + fechaPedido.getDate() + "-" + (fechaPedido.getMonth()+1) + "-" + (fechaPedido.getYear() + 1900);
+        return fecha;
+    }
+    public Date getFechaPedido() {
+        return fechaPedido;
+    }
+
+    public void setFechaPedido(Date fechaPedido) {
+        this.fechaPedido = fechaPedido;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    
 
     public Usuario getUsuario() {
         return usuario;
@@ -48,21 +79,6 @@ public class Pedido implements Serializable {
         this.usuario = usuario;
     }
 
-    public List<Producto> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
-    }
-
-    public String getPreparadoParaRecoger() {
-        return estado;
-    }
-
-    public void setPreparadoParaRecoger(String preparadoParaRecoger) {
-        this.estado = preparadoParaRecoger;
-    }
 
     
 

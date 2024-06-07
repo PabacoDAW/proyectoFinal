@@ -38,3 +38,27 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+.banner {
+    background-color: #f5f5f5;
+    color: #232f3e;
+    padding: 50px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+
+footer {
+    background-color: #232f3e;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+footer span{
+    color: gray;
+}

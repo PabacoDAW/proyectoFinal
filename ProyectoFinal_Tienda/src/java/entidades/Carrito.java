@@ -42,7 +42,6 @@ public class Carrito implements Serializable {
     public Usuario getUsuario() {
         return usuario;
     }
-    
 
     public double getPrecio() {
         double precio = 0;
@@ -92,6 +91,10 @@ public class Carrito implements Serializable {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public void clear() {
+        productos.clear();
     }
     
 

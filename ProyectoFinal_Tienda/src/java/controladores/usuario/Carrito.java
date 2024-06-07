@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import modelo.ModeloLogin;
 import modelo.usuario.ModeloCarrito;
 
 @WebServlet(name = "Carrito", urlPatterns = {"/usuario/Carrito"})
@@ -31,8 +32,16 @@ public class Carrito extends HttpServlet {
             throws ServletException, IOException {
         String vista = "/usuario/carrito.jsp";
         String id_eliminar = request.getParameter("id");
+        String pedir = request.getParameter("pedir");
         HttpSession session = request.getSession();
         Usuario u = (Usuario) session.getAttribute("usuario");
+        if (pedir != null) {
+            u = ModeloCarrito.realizarPedido(u, true);
+        }
+        HttpSession sesion = request.getSession();
+        if (u != null) {
+            sesion.setAttribute("nproducto", ModeloLogin.getNProductos(u));
+        }
         request.setAttribute("productos", ModeloCarrito.getProductos(u.getId()));
         request.setAttribute("precio", ModeloCarrito.getPrecio(u.getId()));
         request.getRequestDispatcher(vista).forward(request, response);

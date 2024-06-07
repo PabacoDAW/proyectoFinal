@@ -45,12 +45,28 @@ public class ModeloLogin {
     }
 
     public static int getNProductos(Usuario u) {
-    if (u != null && u.getCarrito() != null && u.getCarrito().getProductos() != null) {
-        return u.getCarrito().getProductos().size();
-    } else {
-        return 0;
+        if (u != null && u.getCarrito() != null && u.getCarrito().getProductos() != null) {
+            return u.getCarrito().getProductos().size();
+        } else {
+            return 0;
+        }
     }
-}
 
+    public static Usuario updateUser(Usuario u) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectoFinal_TiendaPU");
+        UsuarioJpaController ujc = new UsuarioJpaController(emf);
+        Usuario user = ujc.findUsuario(u.getId());
+        return user;
+    }
+
+    public static boolean tipoUsuario(Usuario u) {
+        boolean isAdmin = false;
+        if (u != null) {
+            if (u.getTipoUsuario() != null) {
+                isAdmin = u.getTipoUsuario().equals(Usuario.TipoUsuario.ADMINISTRADOR);
+            }
+        }
+        return isAdmin;
+    }
 
 }

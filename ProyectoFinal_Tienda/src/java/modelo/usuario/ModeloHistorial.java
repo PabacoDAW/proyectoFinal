@@ -7,6 +7,8 @@ package modelo.usuario;
 import dao.PedidoJpaController;
 import entidades.Pedido;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -20,11 +22,16 @@ public class ModeloHistorial {
         emf.close();
         List<Pedido> pedidoUsu = new ArrayList();
         for (Pedido pedido : pedidos) {
-            if(pedido.getUsuario().getId() == id){
+            if (pedido.getUsuario().getId().equals(id)) {
                 pedidoUsu.add(pedido);
             }
         }
+        /*Collections.sort(pedidoUsu, new Comparator<Pedido>() {
+            public int compare(Pedido p1, Pedido p2) {
+                return p2.getFechaPedido().compareTo(p1.getFechaPedido());
+            }
+        });*/
         return pedidoUsu;
     }
-    
+
 }

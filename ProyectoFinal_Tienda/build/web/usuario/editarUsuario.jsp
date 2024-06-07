@@ -10,60 +10,73 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <style>
-            body {
+            nav{
+                z-index: 2;
+            }
+            body, html {
+                height: 100%;
+                margin: 0;
+                background-color: #171717;
                 font-family: Arial, sans-serif;
             }
-            table {
-                width: 100%;
-                border-collapse: collapse;
-                margin: 20px 0;
-            }
-            table, th, td {
-                border: 1px solid #ddd;
-            }
-            th, td {
-                padding: 8px;
-                text-align: left;
-            }
-            th {
-                background-color: #f2f2f2;
-            }
-            .order-history {
+            .form-container {
+            z-index: 1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #444;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 450px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            color: #fff;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group select,
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group select {
+            border: 1px solid #ddd;
+            background-color: #222;
+            color: white;
+        }
+        .form-group button {
+            border: none;
+            background-color: #5cb85c;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-group button:hover {
+            background-color: #4cae4c;
+        }
+
+        /* Estilos para dispositivos pequeños (menos de 768px) */
+        @media (max-width: 768px) {
+            .form-container {
+                width: 80%;
+                margin-left: 10%;
                 padding: 20px;
+                border-radius: 0;
+                box-shadow: none;
             }
-
-            .order-history h2 {
-                text-align: center;
-                margin-bottom: 20px;
-            }
-
-            .order {
-                background-color: white;
-                padding: 20px;
-                border-radius: 5px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                margin-bottom: 20px;
-                text-align: center;
-            }
-
-            .order h3 {
-                margin: 0 0 10px 0;
-            }
-
-            .order p {
-                margin: 5px 0;
-            }
-
-            .order ul {
-                list-style-type: none;
-                padding: 0;
-                margin: 10px 0 0 0;
-                text-align: center;
-            }
-
-            .order ul li {
-                margin: 5px 0;
-            }
+        }
         </style>
         <title>PaCoTech</title>
     </head>
@@ -122,29 +135,33 @@
                 </div>
             </div>
         </nav>
-        <section class="order-history">
-            <h2>Historial de Pedidos</h2>
-            <c:forEach items="${pedidos}" var="pedido">
-                <div class="order">
-                    <h3>Nº de pedido: ${pedido.id}</h3>
-                    <p>Fecha: pedido.getFecha()</p>
-                    <p>Total: ${pedido.carrito.getPrecio()} €</p>
-                    <p>Estado: ${pedido.estado}</p>
-                    <p><c:choose>
-                            <c:when test="${pedido.entregaADomicilio}">
-                                A domicilio
-                            </c:when>
-                            <c:otherwise>
-                                A recoger en una de nuestras tiendas
-                            </c:otherwise>
-                        </c:choose>
-                    </p>
-                </div>
-            </c:forEach>
-        </section>
-        <footer>
-            <p>&copy; 2024 Tienda Online. Todos los derechos reservados.</p>
-        </footer>
+        <!-- Cuerpo -->
+        <div class="form-container">
+        <h2 style="color: #fff; text-align: center;">Editar Usuario</h2>
+        <form action="actualizarUsuario.jsp" method="post">
+            <!-- Campos del formulario -->
+            <div class="form-group">
+                <label for="usuario">Usuario:</label>
+                <input value="${usuario.usuario}" type="text" id="usuario" name="usuario" required>
+            </div>
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input value="${usuario.nombre}" type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="apellidos">Apellidos:</label>
+                <input value="${usuario.apellidos}" type="text" id="apellidos" name="apellidos" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input value="${usuario.email}" type="email" id="email" name="email" required>
+            </div>
+            <!-- Más campos según la entidad Usuario -->
+            <div class="form-group">
+                <button type="submit">Actualizar Usuario</button>
+            </div>
+        </form>
+    </div>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
                 integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>

@@ -2,28 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controladores;
+package controladores.usuario;
 
-import dao.UsuarioJpaController;
 import entidades.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import modelo.ModeloRegistro;
 
 /**
  *
- * @author Rovimatica
+ * @author usuario
  */
-@WebServlet(name = "Registro", urlPatterns = {"/Registro"})
-public class Registro extends HttpServlet {
+@WebServlet(name = "EditarUsuario", urlPatterns = {"/usuario/EditarUsuario"})
+public class EditarUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,24 +32,10 @@ public class Registro extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String vista = "./registro.jsp";
-        String nombre = request.getParameter("nombre");
-        String nombreUsu = request.getParameter("usuario");
-        String apellidos = request.getParameter("apellidos");
-        String email = request.getParameter("email");
-        String contrasena = request.getParameter("contrasena");
-        String domicilio = request.getParameter("domicilio");
-        HttpSession sesion = request.getSession();
-        if (email != null && !email.trim().isEmpty() && contrasena != null && !contrasena.trim().isEmpty()) {
-            Usuario u = ModeloRegistro.registrar(nombre, apellidos, nombreUsu, domicilio, email, contrasena);
-            if (u == null) {
-                request.setAttribute("error", "Usuario o correo en uso");
-            } else {
-                sesion.setAttribute("usuario", u);
-                response.sendRedirect("PaginaPrincipal");
-            }
-        }
-
+        String vista = "/usuario/editarUsuario.jsp";
+        HttpSession session = request.getSession();
+        Usuario u = (Usuario) session.getAttribute("usuario");
+        request.setAttribute("usuario", u);
         request.getRequestDispatcher(vista).forward(request, response);
     }
 

@@ -41,9 +41,10 @@ public class PaginaPrincipal extends HttpServlet {
         Usuario u = (Usuario) sesion.getAttribute("usuario");
         request.setAttribute("productos", ModeloMenu.getProductos());
         if (u != null) {
-            sesion.setAttribute("tipoUsuario", u.getTipoUsuario());
+            u = ModeloLogin.updateUser(u);
+            sesion.setAttribute("tipoUsuario", ModeloLogin.tipoUsuario(u));
             ModeloMenu.addProduct(agregar, u);
-            request.setAttribute("nproducto", ModeloLogin.getNProductos(u));
+            sesion.setAttribute("nproducto", ModeloLogin.getNProductos(u));
         }
         request.getRequestDispatcher(vista).forward(request, response);
     }

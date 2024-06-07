@@ -4,26 +4,21 @@
  */
 package controladores;
 
-import dao.UsuarioJpaController;
-import entidades.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import modelo.ModeloRegistro;
 
 /**
  *
- * @author Rovimatica
+ * @author Cooler Master
  */
-@WebServlet(name = "Registro", urlPatterns = {"/Registro"})
-public class Registro extends HttpServlet {
+@WebServlet(name = "CerrarSesion", urlPatterns = {"/CerrarSesion"})
+public class CerrarSesion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,25 +31,9 @@ public class Registro extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String vista = "./registro.jsp";
-        String nombre = request.getParameter("nombre");
-        String nombreUsu = request.getParameter("usuario");
-        String apellidos = request.getParameter("apellidos");
-        String email = request.getParameter("email");
-        String contrasena = request.getParameter("contrasena");
-        String domicilio = request.getParameter("domicilio");
         HttpSession sesion = request.getSession();
-        if (email != null && !email.trim().isEmpty() && contrasena != null && !contrasena.trim().isEmpty()) {
-            Usuario u = ModeloRegistro.registrar(nombre, apellidos, nombreUsu, domicilio, email, contrasena);
-            if (u == null) {
-                request.setAttribute("error", "Usuario o correo en uso");
-            } else {
-                sesion.setAttribute("usuario", u);
-                response.sendRedirect("PaginaPrincipal");
-            }
-        }
-
-        request.getRequestDispatcher(vista).forward(request, response);
+        sesion.invalidate();
+        response.sendRedirect("/ProyectoFinal_Tienda/Login");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

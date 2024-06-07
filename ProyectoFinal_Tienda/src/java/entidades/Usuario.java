@@ -33,12 +33,13 @@ public class Usuario implements Serializable {
     private String nombre;
     private String apellidos;
     private String email;
-    
+
     @Column(nullable = false)
     private String contraseña;
     private String domicilio;
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.PERSIST)
     private Carrito carrito;
+
     @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
 
@@ -51,7 +52,6 @@ public class Usuario implements Serializable {
         this.carrito = new Carrito();
         this.carrito.setUsuario(this);
     }
-    
 
     public Carrito getCarrito() {
         return carrito;
@@ -60,7 +60,6 @@ public class Usuario implements Serializable {
     public void setCarrito(Carrito carrito) {
         this.carrito = carrito;
     }
-    
 
     public String getUsuario() {
         return usuario;
@@ -69,7 +68,6 @@ public class Usuario implements Serializable {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
-    
 
     public String getDomicilio() {
         return domicilio;
@@ -86,9 +84,7 @@ public class Usuario implements Serializable {
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
-    
-    
-    
+
     public TipoUsuario getTipoUsuario() {
         return tipoUsuario;
     }
@@ -96,8 +92,6 @@ public class Usuario implements Serializable {
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
-    
-    
 
     public String getNombre() {
         return nombre;
@@ -149,6 +143,11 @@ public class Usuario implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public void agregarNuevoCarrito() {
+        Carrito nuevoCarrito = new Carrito();
+        this.setCarrito(nuevoCarrito);
     }
 
     @Override

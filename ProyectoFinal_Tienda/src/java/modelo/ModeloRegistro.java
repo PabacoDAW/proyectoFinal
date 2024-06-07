@@ -34,7 +34,11 @@ public class ModeloRegistro {
             usuario.setContraseña(contrasena);
         }
         usuario.setTipoUsuario(Usuario.TipoUsuario.SOCIO);
-        ujp.create(usuario);
+        try {
+            ujp.create(usuario);
+        } catch(Exception e){
+            usuario = null;
+        }
         emf.close();
         return usuario;
     }

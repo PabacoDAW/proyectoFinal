@@ -1,3 +1,9 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
 .form {
     display: flex;
     flex-direction: column;
@@ -8,21 +14,21 @@
     background-color: #171717;
     border-radius: 25px;
     transition: .4s ease-in-out;
-  }
-  
-  .form:hover {
+}
+
+.form:hover {
     transform: scale(1.05);
     border: 1px solid black;
-  }
-  
-  #heading {
+}
+
+#heading {
     text-align: center;
     margin: 2em;
     color: rgb(255, 255, 255);
     font-size: 1.2em;
-  }
-  
-  .field {
+}
+
+.field {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,30 +40,30 @@
     color: white;
     background-color: #171717;
     box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
-  }
-  
-  .input-icon {
+}
+
+.input-icon {
     height: 1.3em;
     width: 1.3em;
     fill: white;
-  }
-  
-  .input-field {
+}
+
+.input-field {
     background: none;
     border: none;
     outline: none;
     width: 100%;
     color: #d3d3d3;
-  }
-  
-  .form .btn {
+}
+
+.form .btn {
     display: flex;
     justify-content: center;
     flex-direction: row;
     margin-top: 2.5em;
-  }
-  
-  .button1 {
+}
+
+.button1 {
     padding: 0.5em;
     padding-left: 1.1em;
     padding-right: 1.1em;
@@ -68,14 +74,14 @@
     transition: .4s ease-in-out;
     background-color: #252525;
     color: white;
-  }
-  
-  .button1:hover {
+}
+
+.button1:hover {
     background-color: black;
     color: white;
-  }
-  
-  .button2 {
+}
+
+.button2 {
     display: inline-block;
     padding: 0.5em;
     padding-left: 2.3em;
@@ -88,30 +94,39 @@
     color: white;
     text-decoration: none;
     text-align: center;
-  }
-  
-  .button2:hover {
+}
+
+.button2:hover {
     background-color: black;
     color: white;
-  }
-  
-  /* responsive */
-  @media (min-width: 768px) {
+}
+footer {
+    background-color: #232f3e;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* responsive */
+@media (min-width: 768px) {
     div.responsive-form {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-  
+
     .form {
-      width: 50%;
+        width: 50%;
     }
-  }
-  
-  @media (min-width: 1824px) {
+}
+
+@media (min-width: 1824px) {
     .form {
-      width: 25%;
+        width: 25%;
     }
-  }
-  
+}
+
+footer span{
+    color: gray;
+}

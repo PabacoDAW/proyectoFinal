@@ -37,7 +37,6 @@ public class Prueba extends HttpServlet {
         UsuarioJpaController em = new UsuarioJpaController(emf);
         ProductoJpaController pjc = new ProductoJpaController(emf);
         Producto p = new Producto();
-        p.setStock(23);
         p.setPrecio(5.50);
         p.setNombre("macarrones");
         p.setUrl("https://imagenes.20minutos.es/files/image_1920_1080/uploads/imagenes/2021/09/14/macarrones.jpeg");

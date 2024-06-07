@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 
 /**
  *
@@ -29,8 +28,8 @@ public class Producto implements Serializable {
     private String nombre;
     private String descripcion;
     private double precio;
-    private int stock;
     private String url;
+    
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -108,14 +107,6 @@ public class Producto implements Serializable {
 
     public void setPrecio(double precio) {
         this.precio = precio;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
     }
     
 }
