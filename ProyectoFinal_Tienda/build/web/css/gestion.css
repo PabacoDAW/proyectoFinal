@@ -1,0 +1,79 @@
+/* Variables de colores */
+:root {
+    --color-blanco: #f5f5f5;
+    --color-gris-claro: #F2F2F2;
+    --color-gris-oscuro: #333333;
+    --color-negro: #000000;
+    --color-azul: #007BFF;
+    --color-azul-hover: #0056b3;
+    --color-rojo: #DC3545;
+    --color-verde: #28A745;
+}
+
+/* Tipografía */
+body {
+    font-family: 'Arial', sans-serif;
+    color: var(--color-gris-oscuro);
+    background-color: var(--color-blanco);
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Contenido Principal */
+.main-content {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    background-color: var(--color-blanco);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.card {
+    background-color: var(--color-blanco);
+    border: 1px solid var(--color-gris-claro);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.link-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.admin-link {
+    display: inline-block;
+    background-color: var(--color-azul);
+    color: var(--color-blanco);
+    padding: 15px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 18px;
+}
+
+.admin-link:hover {
+    background-color: var(--color-azul-hover);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .main-content {
+        padding: 15px;
+    }
+
+    .admin-link {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+}
